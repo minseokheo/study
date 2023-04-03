@@ -33,11 +33,10 @@ else:
     news = news + "아쉽게도 이번 경기에서 손흥민의 발끝은 침묵을 지켰습니다. "
 
 print(news)
-"""
+
 from gtts import gTTS
 import playsound
 
 tts = gTTS(text = news, lang = 'ko')
 tts.save("news_Son.mpg3")
 playsound.playsound("news_Son.mp3", True)
-"""
