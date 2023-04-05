@@ -1,5 +1,6 @@
 from datetime import datetime
 import random
+import os
 
 # 경기 결과 입력 받는 곳
 place = input("경기가 열린 곳은? ")
@@ -37,6 +38,7 @@ print(news)
 from gtts import gTTS
 import playsound
 
-tts = gTTS(text = news, lang = 'ko')
-tts.save("news_Son.mpg3")
+tts = gTTS(text=news, lang='ko')                        # 문자열 news를 위한 한국어 음성 합성
+tts.save("news_Son.mp3")
 playsound.playsound("news_Son.mp3", True)
+os.remove('news_Son.mp3')
