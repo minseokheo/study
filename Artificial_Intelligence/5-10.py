@@ -1,9 +1,9 @@
 import numpy as np
 import tensorflow as tf
-from tensorflow.keras.datasets import mnist
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense
-from tensorflow.keras.optimizers import Adam
+from keras.datasets import mnist
+from keras.models import Sequential
+from keras.layers import Dense
+from keras.optimizers import Adam
 
 # MNIST 읽어 와서 신경망에 입력할 형태로 변환
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
