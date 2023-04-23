@@ -10,12 +10,13 @@ import time
 ################
 mnist = fetch_openml('mnist_784')
 mnist.data = mnist.data / 255.0
-x_train, x_test, y_train, y_test = train_test_split(mnist.data, mnist.target, train_size=0.6)
+x_train = mnist.data[:60000]; x_test = mnist.data[60000:]
+y_train = np.int16(mnist.target[:60000]); y_test = np.int16(mnist.target[60000:])
 
 start = time.time()
-mlp = MLPClassifier(learning_rate_init=0.001, batch_size=32, max_iter=300, solver='sgd')
-prange = range(50, 1001, 50)
-train_score, test_score = validation_curve(mlp, x_train, y_train, param_name="hidden_layer_sizes", param_range=prange, cv=10, scoring="accuracy", n_jobs=4)
+mlp = MLPClassifier(learning_rate_init=0.001, batch_size=512, max_iter=20, solver='sgd')
+prange = range(50, 1001, 200)
+train_score, test_score = validation_curve(mlp, x_train, y_train, param_name="hidden_layer_sizes", param_range=prange, cv=5, scoring="accuracy", n_jobs=4)
 end = time.time()
 print("하이퍼 매개변수 최적화에 걸린 시간은", end-start, "초입니다.")
 
@@ -38,12 +39,12 @@ plt.show()
 best_number_nodes = prange[np.argmax(test_mean)]
 print("\n최적의 은닉층의 노드 개수는", best_number_nodes, "개입니다.\n")
 
-mlp_test = MLPClassifier(hidden_layer_sizes=(best_number_nodes), learning_rate_init=0.001, batch_size=32, max_iter=300, solver='sgd')
+mlp_test = MLPClassifier(hidden_layer_sizes=(best_number_nodes), learning_rate_init=0.001, batch_size=512, max_iter=20, solver='sgd')
 mlp_test.fit(x_train, y_train)
 
 res = mlp_test.predict(x_test)
 
-conf = np.zeors((10, 10))
+conf = np.zeros((10, 10),dtype=np.int16)
 for i in range(len(res)):
     conf[res[i]][y_test[i]] += 1
 print(conf)

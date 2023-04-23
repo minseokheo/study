@@ -22,6 +22,8 @@ rf = RandomForestClassifier()
 accuracies_rf = cross_val_score(rf, digit.data, digit.target, cv=5)
 print("RandomForest 정확률(평균)=%0.3f, 표준편차=%0.3f" %(accuracies_rf.mean()*100,accuracies_rf.std()))
 
+# SVM이 가장 성능이 좋음
+
 s.fit(x_train, y_train)
 res = s.predict(x_test)
 
