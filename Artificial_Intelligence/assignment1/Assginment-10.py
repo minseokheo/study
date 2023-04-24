@@ -26,24 +26,25 @@ n_output=10
 
 # 하이퍼 매개변수 설정
 batch_siz=256
-n_epoch=20
-k=5 # 5-겹
+n_epoch=50
+k=10 # 10-겹
 
 # 모델을 설계해주는 함수(모델을 나타내는 객체 model을 반환)
 def build_model():
     model=Sequential()
     model.add(Dense(units=n_hidden1,input_shape=(n_input,)))
     model.add(PReLU())
+    model.add(Dropout(0.5))
     model.add(Dense(units=n_hidden2))
     model.add(PReLU())
-    model.add(Dropout(0.5))
     model.add(Dense(units=n_hidden3))
     model.add(PReLU())
+    model.add(Dropout(0.5))
     model.add(Dense(units=n_hidden4))
     model.add(PReLU())
-    model.add(Dropout(0.5))
     model.add(Dense(units=n_hidden5))
     model.add(PReLU())
+    model.add(Dropout(0.5))
     model.add(Dense(units=n_output,activation='softmax'))
     return model
 
