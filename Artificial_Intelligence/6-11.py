@@ -3,7 +3,7 @@ import tensorflow as tf
 from keras.models import Sequential
 from keras.layers import Flatten,Dense
 from keras.optimizers import Adam
-from tensorflow.keras.applications.resnet50 import ResNet50,preprocess_input
+from keras.applications.resnet50 import ResNet50,preprocess_input
 from keras.preprocessing import image
 import os
 
