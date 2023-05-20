@@ -1,7 +1,7 @@
-from tensorflow.keras.datasets import imdb
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense,Flatten,Embedding
-from tensorflow.keras import preprocessing
+from keras.datasets import imdb
+from keras.models import Sequential
+from keras.layers import Dense,Flatten,Embedding
+from keras import preprocessing
 
 dic_siz=10000 # 사전의 크기(사전에 있는 단어 개수)
 sample_siz=512 # 샘플의 크기

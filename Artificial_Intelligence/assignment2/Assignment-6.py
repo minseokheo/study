@@ -1,6 +1,6 @@
 from keras.datasets import imdb
 from keras.models import Sequential
-from keras.layers import Dense,LSTM,Embedding
+from keras.layers import Dense,Flatten,Embedding
 from keras import preprocessing
 from keras.callbacks import EarlyStopping
 
@@ -9,21 +9,34 @@ sample_siz=512 # 샘플의 크기
 
 # tensorflow가 제공하는 간소한 버전의 IMDB 읽기
 (x_train,y_train),(x_test,y_test)=imdb.load_data(num_words=dic_siz)
+print(x_train.shape,x_test.shape)
+print(x_train[0])
 
+# 단어를 숫자, 숫자를 단어로 변환하는데 쓰는 표(표는 딕셔너리로 구현)
+word2id=imdb.get_word_index()
+id2word={word:id for id,word in word2id.items()}
+
+for i in range(1,21):
+    print(id2word[i],end='/')
+    
 embed_space_dim=16 # 16차원의 임베딩 공간
 
 x_train=preprocessing.sequence.pad_sequences(x_train,maxlen=sample_siz)
 x_test=preprocessing.sequence.pad_sequences(x_test,maxlen=sample_siz)
 
-early=EarlyStopping(monitor='val_accuracy',patience=5,restore_best_weights=True)
+# early=EarlyStopping(monitor='val_accuracy',patience=5,restore_best_weights=True) # EarlyStopping
 
-# 신경망 모델의 설계와 학습(LSTM 층 포함)
+# 신경망 모델 설계와 학습
 embed=Sequential()
 embed.add(Embedding(input_dim=dic_siz,output_dim=embed_space_dim,input_length=sample_siz))
-embed.add(LSTM(units=32))
+embed.add(Flatten())
+embed.add(Dense(32,activation='relu'))
 embed.add(Dense(1,activation='sigmoid'))
 embed.compile(loss='binary_crossentropy',optimizer='Adam',metrics=['accuracy'])
-hist=embed.fit(x_train,y_train,epochs=20,batch_size=64,validation_split=0.2,verbose=2,callbacks=[early])
+hist=embed.fit(x_train,y_train,epochs=20,batch_size=64,validation_data=(x_test,y_test),verbose=2)
+# hist=embed.fit(x_train,y_train,epochs=20,batch_size=64,validation_data=(x_test,y_test),verbose=2,callbacks=[early]) # EarlyStopping
+
+embed.summary()
 
 # 모델 평가
 res=embed.evaluate(x_test,y_test,verbose=0)
