@@ -33,15 +33,13 @@ hist = cnn.fit(x_train, y_train, batch_size=128, epochs=30, validation_data=(x_t
 
 # 신경망 모델 정확률 평가
 res = cnn.evaluate(x_test, y_test, verbose=0)
-print("1순위 정확률은", res[1] * 100)
 
 # 다중 순위 정확률 계산
 predictions = cnn.predict(x_test)
-top1_accuracy = np.mean(np.argmax(predictions, axis=1) == np.argmax(y_test, axis=1)) * 100
 
 # 5순위 정확률 계산
 sorted_indices = np.argsort(predictions, axis=1)[:, ::-1]
 top5_accuracy = np.mean(np.any(sorted_indices[:, :5] == np.argmax(y_test, axis=1).reshape((-1, 1)), axis=1)) * 100
 
-print("1순위 정확률은", top1_accuracy)
+print("1순위 정확률은", res[1] * 100)
 print("5순위 정확률은", top5_accuracy)
