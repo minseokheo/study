@@ -109,9 +109,9 @@ fake = generator.predict(p)
 discriminator.evaluate(fake,np.zeros((len(x_test),1))) # fake data에 대한 D network의 성능 확인
 
 res = discriminator.predict(x_test)
-print('accuracy:', np.sum(res>=0.5)/len(res)) 
+print('real data accuracy:', np.sum(res>=0.5)/len(res)) 
 
 p=np.random.normal(0,1,(len(x_test),zdim))
 fake=generator.predict(p)
 res = discriminator.predict(fake)
-print('accuracy:', np.sum(res<0.5)/len(res)) 
+print('fake data accuracy:', np.sum(res<0.5)/len(res)) 
