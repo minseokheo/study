@@ -1,8 +1,8 @@
-from tensorflow.keras.datasets import imdb
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense,LSTM,Embedding
-from tensorflow.keras import preprocessing
-from tensorflow.keras.callbacks import EarlyStopping
+from keras.datasets import imdb
+from keras.models import Sequential
+from keras.layers import Dense,LSTM,Embedding
+import tensorflow as tf
+from keras.callbacks import EarlyStopping
 
 dic_siz=10000 # 사전의 크기(사전에 있는 단어 개수)
 sample_siz=512 # 샘플의 크기
@@ -12,8 +12,8 @@ sample_siz=512 # 샘플의 크기
 
 embed_space_dim=16 # 16차원의 임베딩 공간
 
-x_train=preprocessing.sequence.pad_sequences(x_train,maxlen=sample_siz)
-x_test=preprocessing.sequence.pad_sequences(x_test,maxlen=sample_siz)
+x_train=tf.keras.preprocessing.sequence.pad_sequences(x_train,maxlen=sample_siz)
+x_test=tf.keras.preprocessing.sequence.pad_sequences(x_test,maxlen=sample_siz)
 
 early=EarlyStopping(monitor='val_accuracy',patience=5,restore_best_weights=True)
 

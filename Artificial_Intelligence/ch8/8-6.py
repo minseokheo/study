@@ -1,7 +1,7 @@
 import os
 
 # 원본 IMDB 데이터 읽기
-directory='./data/aclImdb/aclImdb/test'
+directory='C:/Users/tig06/OneDrive/Desktop/BOJ/study/Artificial_Intelligence/ch8/data/aclImdb/aclImdb/test'
 x=[];y=[]
 for c in ['neg','pos']:
     curr=os.path.join(directory,c)
