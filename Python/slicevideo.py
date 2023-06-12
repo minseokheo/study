@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import tensorflow as tf
 
-vfilepath='C:/useful_video/4.mp4' #이미지로 자를 영상 경로
+vfilepath='C:/VehicleVideo/resultvid4.mp4' #이미지로 자를 영상 경로
 videofile=cv2.VideoCapture(vfilepath)
 
 length=int(videofile.get(cv2.CAP_PROP_FRAME_COUNT))
@@ -20,8 +20,8 @@ count=1
 while(True):
     ret, image=videofile.read()
     if not ret: break
-    if(int(videofile.get(1)) % 5 == 0): # 몇 프레임 당 1장씩 자를지 
-        cv2.imwrite('C:/useful_video/4'+'/%d.jpg'%count,image) # 동영상 저장경로
+    if(int(videofile.get(1)) % 1 == 0): # 몇 프레임 당 1장씩 자를지 
+        cv2.imwrite('C:/VehicleVideo/4'+'/%d.jpg'%count,image) # 동영상 저장경로
         print('saved frame number:',str(int(videofile.get(1))))
         count+=1
     

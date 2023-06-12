@@ -26,7 +26,7 @@ for i in range(n_episode):
             argmaxs=np.argwhere(Q[s,:]==np.max(Q[s,:])).flatten().tolist()
             a=np.random.choice(argmaxs)
         # s1,r,done,_=env.step(a)
-        s1,r,done,truncated,_=env.step(a)
+        s1,r,done,truncated,info=env.step(a)
         # print(s, s1, r, Q)
 
         if s1 == s:

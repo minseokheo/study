@@ -3,7 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # 코인데스크 사이트에서 1년치 비트코인 가격 데이터 읽기
-f=open("BTC_USD_2019-02-28_2020-02-27-CoinDesk.csv","r")
+f=open("C:/Users/tig06/OneDrive/Desktop/BOJ/study/Artificial_Intelligence/ch8/BTC_USD_2019-02-28_2020-02-27-CoinDesk.csv","r")
 coindesk_data=pd.read_csv(f,header=0)
 seq=coindesk_data[['Closing Price (USD)','24h Open (USD)','24h High (USD)','24h Low (USD)']].to_numpy() # 종가, 시가, 고가, 저가를 모두 취함
 
@@ -23,8 +23,8 @@ X,Y = seq2dataset(seq,w,h)
 print(X.shape,Y.shape)
 print(X[0],Y[0])
 
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, LSTM, Dropout
+from keras.models import Sequential
+from keras.layers import Dense, LSTM, Dropout
 
 # 훈련 집합과 테스트 집합으로 분할
 split=int(len(X)*0.7)

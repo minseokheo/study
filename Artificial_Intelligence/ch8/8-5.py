@@ -58,8 +58,8 @@ seq=seq1+seq2+seq3
 
 X,Y = seq2dataset(seq,w,h)
 
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, LSTM
+from keras.models import Sequential
+from keras.layers import Dense, LSTM
 import tensorflow as tf
 
 # 훈련 집합 구축
