@@ -53,6 +53,10 @@ def epsilon_greedy(eps):
         wins[h]+=1 if reward==1 else 0
     return episode, (num,wins)
 
+print("손잡이별 승리 확률:", ["%6.4f"% (r[1][i]/r[0][i]) if r[0][i]>0 else 0.0 for i in range(n_arms)])
+print("손잡이별 수익($):",["%d"% (2*r[1][i]-r[0][i]) for i in range(n_arms)])
+print("순 수익($):",sum(np.asarray(e)[:,1]))
+
 a = 0.0
 x = list()
 profit = list()
@@ -62,10 +66,6 @@ for _ in range(11):
     x.append(a)
     profit.append(sum(np.asarray(e)[:,1]))
     a += 0.1
-
-print("손잡이별 승리 확률:", ["%6.4f"% (r[1][i]/r[0][i]) if r[0][i]>0 else 0.0 for i in range(n_arms)])
-print("손잡이별 수익($):",["%d"% (2*r[1][i]-r[0][i]) for i in range(n_arms)])
-print("순 수익($):",sum(np.asarray(e)[:,1]))
 
 plt.plot(x, profit)
 plt.grid(True)
