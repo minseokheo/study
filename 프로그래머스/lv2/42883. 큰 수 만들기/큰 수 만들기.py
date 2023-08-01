@@ -47,3 +47,16 @@ def solution(number, k):
     if a != len(number)-1: # 문자열 끝까지 확인 못하고 중간에 제거해야할 숫자를 다 찾으면 뒤에 덧붙여줌
         answer += number[a:]
     return answer
+"""
+def solution(number, k):
+    stack = [number[0]]
+    for num in number[1:]:
+        while len(stack) > 0 and stack[-1] < num and k > 0:
+            k -= 1
+            stack.pop()
+        stack.append(num)
+    if k != 0:
+        stack = stack[:-k]
+    return ''.join(stack)
+"""
+# 위 방법은 다른 사람 풀이를 보니까 스택으로 풀었는데 대단하다고 느껴진다.. 스택 큐 공부를 더 해야겠다!
