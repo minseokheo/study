@@ -79,10 +79,20 @@ while True:
             alert_text = alert.text
             if "신청 하시겠습니까?" in alert_text:
                 alert.accept()  # "확인" 버튼 클릭
+                time.sleep(1)
+                try:
+                    alert2 = Alert(browser)
+                    alert2_text = alert2.text
+                    if "수강인원 초과입니다." in alert2_text:
+                        alert2.accept()
+                    if "신청" in alert2_text:
+                        alert2.accept()
+                except Exception as e:
+                    print("경고 대화상자 다루기 실패! :", e)
         except Exception as e:
             print("경고 대화상자 다루기 실패:", e)
 
-    if press >= 10000:
+    if press >= 1000:
         browser.refresh()
         time.sleep(2)
         press = 0
