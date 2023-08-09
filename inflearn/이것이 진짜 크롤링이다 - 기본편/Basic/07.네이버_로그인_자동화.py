@@ -28,14 +28,14 @@ driver.get("https://nid.naver.com/nidlogin.login?mode=form&url=https://www.naver
 # 아이디 입력창
 id = driver.find_element(By.CSS_SELECTOR, "#id")
 id.click()
-pyperclip.copy("tig06015")
+pyperclip.copy("")
 pyautogui.hotkey("ctrl", "v")
 time.sleep(2)
 
 # 비밀번호 입력창
 pw = driver.find_element(By.CSS_SELECTOR, "#pw")
 pw.click()
-pyperclip.copy("love998100!")
+pyperclip.copy("")
 pyautogui.hotkey("ctrl", "v")
 time.sleep(2)
 
