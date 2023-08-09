@@ -52,18 +52,18 @@ login_btn = browser.find_element(By.CSS_SELECTOR,"#btn_login")
 login_btn.click()
 time.sleep(5)
 
-while True:
-    press = 0
+press = 0
 
+while True:
     # 과목 검색 버튼
     search_btn = browser.find_element(By.CSS_SELECTOR, "#tabs1")
     search_btn.click()
-    time.sleep(0.1)
+    time.sleep(0.3)
 
     # 꾸러미 신청 목록 버튼
     basket_btn = browser.find_element(By.CSS_SELECTOR, "#tabs2")
     basket_btn.click()
-    time.sleep(0.1)
+    time.sleep(0.3)
     press += 1
 
     # 수강인원
@@ -72,7 +72,7 @@ while True:
     if people != '120':
         apply_btn = browser.find_element(By.CSS_SELECTOR, "#grid01 > tr:nth-child(2) > td:nth-child(2) > a") # 신청버튼
         apply_btn.click()
-        time.sleep(2)
+        time.sleep(1)
         # 경고 대화상자 다루기
         try:
             alert = Alert(browser)
@@ -81,11 +81,11 @@ while True:
                 alert.accept()  # "확인" 버튼 클릭
         except Exception as e:
             print("경고 대화상자 다루기 실패:", e)
-        time.sleep(1)
 
-    if press >= 11000:
+    if press >= 10000:
         browser.refresh()
-        time.sleep(1)
+        time.sleep(2)
+        press = 0
     
 
 
