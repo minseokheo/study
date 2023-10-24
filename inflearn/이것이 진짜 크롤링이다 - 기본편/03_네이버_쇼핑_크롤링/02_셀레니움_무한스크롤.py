@@ -58,6 +58,9 @@ items = driver.find_elements(By.CSS_SELECTOR,".product_inner__gr8QR")
 
 for item in items:
     name = item.find_element(By.CSS_SELECTOR, ".product_title__Mmw2K").text
-    price = item.find_element(By.CSS_SELECTOR, ".price_num__S2p_v").text
+    try:
+        price = item.find_element(By.CSS_SELECTOR, ".price_num__S2p_v").text
+    except:
+        price = "판매중단"
     link = item.find_element(By.CSS_SELECTOR, ".product_title__Mmw2K > a").get_attribute('href')
     print(name, price, link)

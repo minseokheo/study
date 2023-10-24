@@ -55,14 +55,17 @@ while True:
     before_h = after_h
 
 # 파일 생성
-f = open(r"C:\Users\tig06\Desktop\study\study\Python\inflearn\이것이 진짜 크롤링이다 - 기본편\03_네이버_쇼핑_크롤링\data.csv", 'w', encoding='CP949', newline='')
+f = open(r"C:\Users\tig06\OneDrive\Desktop\BOJ\study\inflearn\이것이 진짜 크롤링이다 - 기본편\03_네이버_쇼핑_크롤링\data.csv", 'w', encoding='CP949', newline='')
 csvWriter = csv.writer(f)
 # 상품 정보 div
 items = driver.find_elements(By.CSS_SELECTOR,".product_inner__gr8QR")
 
 for item in items:
     name = item.find_element(By.CSS_SELECTOR, ".product_title__Mmw2K").text
-    price = item.find_element(By.CSS_SELECTOR, ".price_num__S2p_v").text
+    try:
+        price = item.find_element(By.CSS_SELECTOR, ".price_num__S2p_v").text
+    except:
+        price = "판매중단"
     link = item.find_element(By.CSS_SELECTOR, ".product_title__Mmw2K > a").get_attribute('href')
     print(name, price, link)
     
