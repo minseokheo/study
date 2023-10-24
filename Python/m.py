@@ -29,21 +29,21 @@ browser.get(f'https://sugang.knu.ac.kr')
 # 학번 입력창
 sid = browser.find_element(By.CSS_SELECTOR, "#stdno")
 sid.click()
-pyperclip.copy("2018113085")
+pyperclip.copy("") # 학번 입력
 pyautogui.hotkey("ctrl", "v")
 time.sleep(1)
 
 # 아이디 입력창
 id = browser.find_element(By.CSS_SELECTOR, "#userId")
 id.click()
-pyperclip.copy("tig06015")
+pyperclip.copy("") # 아이디 입력
 pyautogui.hotkey("ctrl", "v")
 time.sleep(1)
 
 # 비밀번호 입력창
 pw = browser.find_element(By.CSS_SELECTOR, "#pssrd")
 pw.click()
-pyperclip.copy("Love998100!")
+pyperclip.copy("") # 비밀번호 입력
 pyautogui.hotkey("ctrl", "v")
 time.sleep(1)
 
@@ -96,37 +96,3 @@ while True:
         browser.refresh()
         time.sleep(2)
         press = 0
-    
-
-
-"""
-while people == '120': # 수강정원 120명
-    if people != '120':
-        apply = browser.find_element(By.CSS_SELECTOR, "#grid01 > tr:nth-child(2) > td:nth-child(2) > a") # 신청버튼
-        apply.send_keys(Keys.RETURN)
-    body = browser.find_element_by_tag_name('body')
-    body.send_keys(Keys.F5)
-    time.sleep(2)
-"""
-"""
-initial_html = browser.page_source
-
-while True:
-    # 웹 페이지 열기
-    browser.get(f'https://sugang.knu.ac.kr/web/stddm/lssrq/sugang/appcr.knu?login=true')
-    current_html = browser.page_source
-    
-    # 이전과 현재 HTML을 비교하여 변화를 감지
-    if current_html != initial_html:
-        print("변화가 감지되었습니다! 알람을 보냅니다.")
-        # 여기에서 알람을 보내는 작업을 추가할 수 있습니다.
-        
-        # 변화가 감지된 후에는 현재 HTML을 새로운 기준으로 설정
-        initial_html = current_html
-    
-    # 일정 간격으로 웹 페이지를 확인 (예: 1분마다)
-    time.sleep(60)
-
-# 브라우저 종료
-browser.quit()
-"""
