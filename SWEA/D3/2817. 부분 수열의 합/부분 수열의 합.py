@@ -2,11 +2,13 @@ T = int(input())
 
 def dfs(n, sm):
     global ans
+    if K < sm:
+        return
     if n == N:
         if sm == K:
             ans += 1
         return
-    
+
     dfs(n+1, sm+num_list[n])
     dfs(n+1, sm)
 
