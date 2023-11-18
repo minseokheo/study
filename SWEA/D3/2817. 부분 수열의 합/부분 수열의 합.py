@@ -1,14 +1,18 @@
 T = int(input())
 
+def dfs(n, sm):
+    global ans
+    if n == N:
+        if sm == K:
+            ans += 1
+        return
+    
+    dfs(n+1, sm+num_list[n])
+    dfs(n+1, sm)
+
 for test_case in range(1, T+1):
     N, K = map(int, input().split())
     num_list = list(map(int, input().split()))
-    sum_list = list()
-    for num in num_list:
-        append_list = list()
-        for sum_num in sum_list:
-            append_list.append(sum_num + num)
-        sum_list = sum_list + append_list
-        sum_list.append(num)
-    ans = sum_list.count(K)
+    ans = 0
+    dfs(0, 0)
     print(f"#{test_case} {ans}")
