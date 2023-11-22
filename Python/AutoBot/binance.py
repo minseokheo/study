@@ -4,7 +4,7 @@ import pandas as pd
 
 def get(symbol, interval):
     url = "https://www.binance.com/fapi/v1/continuousKlines?&limit=1000&pair="+ symbol + "&contractType=PERPETUAL&interval=" + interval + ""
-    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"}
+    headers = {"User_Agent" : "내 유저 에이전트 아이디"}
     res = requests.get(url, headers=headers)
     res.raise_for_status()
 
@@ -15,6 +15,6 @@ def get(symbol, interval):
     return df
 
 def tel_text(text):
-    bot = telegram.Bot(token='6933439156:AAF9B_X1HGwNUjkKtp1JnA974HXc5ak00WI')
-    chat_id = 6730388900
+    bot = telegram.Bot(token='내 텔레그램 봇 토큰')
+    chat_id = 내 텔레그램 챗 아이디
     bot.send_message(chat_id=chat_id, text= text)
