@@ -25,6 +25,6 @@ for _ in range(M):
         else:
             S.add(int(order[1]))
     elif order[0] == "all":
-        S = change_S
+        S = change_S.copy()
     elif order[0] == "empty":
         S.clear()
